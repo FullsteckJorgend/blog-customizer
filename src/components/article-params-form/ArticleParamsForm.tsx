@@ -16,8 +16,9 @@ import { Select } from 'src/ui/select';
 import { Separator } from 'src/ui/separator';
 
 import styles from './ArticleParamsForm.module.scss';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+import useDetectClickOutSideComponent from 'src/castomHooks/useDetectClickOutSideComponent';
 
 type Props = {
 	articleState: ArticleStateType;
@@ -26,8 +27,9 @@ type Props = {
 
 export const ArticleParamsForm = ({ articleState, onApply }: Props) => {
 	const [boolean, setBoolean] = useState<boolean>(false);
-
 	const [draftState, setDraftState] = useState(articleState);
+	const { ref, isComponentVisible, setIsComponentVisible } =
+		useDetectClickOutSideComponent(false);
 
 	const updateArticleState = (
 		key: keyof ArticleStateType,
@@ -39,13 +41,15 @@ export const ArticleParamsForm = ({ articleState, onApply }: Props) => {
 	return (
 		<>
 			<ArrowButton
-				isOpen={boolean}
-				onClick={() => {
-					setBoolean(!boolean);
-				}}
+				isOpen={isComponentVisible}
+				onClick={() => setIsComponentVisible(!isComponentVisible)}
 			/>
 			<aside
-				className={clsx(styles.container, boolean && styles.container_open)}>
+				ref={ref}
+				className={clsx(
+					styles.container,
+					isComponentVisible && styles.container_open
+				)}>
 				<form className={styles.form}>
 					<Text
 						as='h2'
