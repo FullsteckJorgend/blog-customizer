@@ -14,9 +14,8 @@ import {
 import { RadioGroup } from 'src/ui/radio-group';
 import { Select } from 'src/ui/select';
 import { Separator } from 'src/ui/separator';
-
 import styles from './ArticleParamsForm.module.scss';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 import useDetectClickOutSideComponent from 'src/castomHooks/useDetectClickOutSideComponent';
 
@@ -26,7 +25,6 @@ type Props = {
 };
 
 export const ArticleParamsForm = ({ articleState, onApply }: Props) => {
-	const [boolean, setBoolean] = useState<boolean>(false);
 	const [draftState, setDraftState] = useState(articleState);
 	const { ref, isComponentVisible, setIsComponentVisible } =
 		useDetectClickOutSideComponent(false);
