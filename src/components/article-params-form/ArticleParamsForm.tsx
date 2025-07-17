@@ -48,7 +48,12 @@ export const ArticleParamsForm = ({ articleState, onApply }: Props) => {
 					styles.container,
 					isComponentVisible && styles.container_open
 				)}>
-				<form className={styles.form}>
+				<form
+					className={styles.form}
+					onSubmit={(e) => {
+						e.preventDefault();
+						onApply(draftState);
+					}}>
 					<Text
 						as='h2'
 						size={31}
@@ -112,7 +117,7 @@ export const ArticleParamsForm = ({ articleState, onApply }: Props) => {
 						/>
 						<Button
 							title='Применить'
-							htmlType='button'
+							htmlType='submit'
 							type='apply'
 							onClick={() => onApply(draftState)}
 						/>
