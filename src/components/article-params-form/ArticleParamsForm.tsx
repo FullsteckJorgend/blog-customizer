@@ -53,8 +53,7 @@ export const ArticleParamsForm = ({ articleState, onApply }: Props) => {
 						weight={800}
 						uppercase
 						align='left'
-						family='open-sans'
-						>
+						family='open-sans'>
 						Задайте параметры
 					</Text>
 					<Select
